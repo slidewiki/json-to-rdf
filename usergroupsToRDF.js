@@ -14,6 +14,9 @@ fs.createReadStream('data/usergroups.txt')
   .pipe(ndjson.parse())
   .on('data', function(obj) {
     convertToRDF(obj);
+  })
+  .on('error', function(obj) {
+    console.log('#######Error#########');
   });
 
 //list of selected properties
