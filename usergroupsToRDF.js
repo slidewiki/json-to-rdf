@@ -6,6 +6,7 @@ const prefixes = `
 @prefix swV: <http://rdf.slidewiki.org/vocab/> .
 @prefix swR: <https://slidewiki.org/usergroup/> .
 @prefix swUserR: <https://slidewiki.org/user/> .
+@prefix prv: <http://purl.org/net/provenance/ns#> .
 `;
 //write prefixes
 console.log(prefixes);
