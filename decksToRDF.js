@@ -86,7 +86,7 @@ swR:${id}-${item.id} swV:hasTag swTagR:${tag.id} .
             if(content.kind === 'slide'){
               console.log(`
 swR:${id}-${item.id} swV:hasContentItem <https://slidewiki.org/deck/${id}-${item.id}/${content.kind}/${content.ref.id}-${content.ref.revision}> .
-<https://slidewiki.org/deck/${id}-${item.id}/${content.kind}/${content.ref.id}-${content.ref.revision}>  a swV:SlideRevision ;
+<https://slidewiki.org/deck/${id}-${item.id}/${content.kind}/${content.ref.id}-${content.ref.revision}>  a swV:SlideRevisionUsedInDeck ;
     swV:isRevisedFrom swSlideR:${content.ref.id} ;
     swV:isEqualTo swSlideR:${content.ref.id}-${content.ref.revision} ;
     swV:order """${content.order}""" .
@@ -94,7 +94,7 @@ swR:${id}-${item.id} swV:hasContentItem <https://slidewiki.org/deck/${id}-${item
             }else{
               console.log(`
 swR:${id}-${item.id} swV:hasContentItem <https://slidewiki.org/deck/${id}-${item.id}/${content.kind}/${content.ref.id}-${content.ref.revision}> .
-<https://slidewiki.org/deck/${id}-${item.id}/${content.kind}/${content.ref.id}-${content.ref.revision}>  a swV:DeckRevision ;
+<https://slidewiki.org/deck/${id}-${item.id}/${content.kind}/${content.ref.id}-${content.ref.revision}>  a swV:DeckRevisionUsedInDeck ;
     swV:isRevisedFrom swR:${content.ref.id} ;
     swV:isEqualTo swR:${content.ref.id}-${content.ref.revision} ;
     swV:order """${content.order}""" .
