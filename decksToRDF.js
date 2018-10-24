@@ -19,7 +19,7 @@ fs.createReadStream('data/decks.txt')
     convertToRDF(obj);
   })
   .on('error', function(obj) {
-    console.log('#######Error#########');  
+    console.log('#######Error#########');
   });
 
 //list of selected properties
@@ -66,11 +66,11 @@ swR:${id} swV:hasContibutor swUserR:${item.user} .
           console.log(`
 swR:${id} swV:hasRevision swR:${id}-${item.id}  .
 swR:${id}-${item.id} a swV:DeckRevision ;
-    swV:title """${item.title}""" ;
+    swV:title """${JSON.stringify(item.title)}""" ;
     swV:timestamp """${item.timestamp}""" ;
     swV:lastUpdate """${item.lastUpdate}""" ;
     swV:language """${item.language}""" ;
-    swV:abstract """${item.abstract ? item.abstract : '-'}""" ;
+    swV:abstract """${item.abstract ? encodeURIComponent(item.abstract) : '-'}""" ;
     swV:theme """${item.theme}""" ;
     swV:allowMarkdown """${item.allowMarkdown}""" ;
     prv:createdBy swUserR:${item.user} .

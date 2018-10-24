@@ -63,9 +63,9 @@ swR:${id} swV:hasContibutor swUserR:${item.user} .
           console.log(`
 swR:${id} swV:hasRevision swR:${id}-${item.id}  .
 swR:${id}-${item.id} a swV:SlideRevision ;
-    swV:title """${item.title}""" ;
+    swV:title """${JSON.stringify(item.title)}""" ;
     swV:timestamp """${item.timestamp}""" ;
-    swV:content """${item.content}""" ;
+    swV:content """${encodeURIComponent(item.content)}""" ;
     swV:speakernotes """${item.speakernotes ? item.speakernotes : '-'}""" ;
     prv:createdBy swUserR:${item.user} .
           `);
