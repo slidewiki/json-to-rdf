@@ -1,0 +1,5 @@
+{"_id":795,"id":795,"name":"Test Group","description":"Test group edited with JMeter3","isActive":true,"timestamp":"2017-09-28T08:15:58.218Z","members":[],"creator":{"userid":120002,"username":"testuser03"}}
+{"_id":796,"id":796,"name":"Test Group","description":"Test group edited with JMeter3","isActive":true,"timestamp":"2017-09-28T08:16:02.248Z","members":[],"creator":{"userid":120013,"username":"testuser14"}}
+{"_id":797,"id":797,"name":"Test Group","description":"Test group edited with JMeter3","isActive":true,"timestamp":"2017-09-28T08:16:03.349Z","members":[],"creator":{"userid":120006,"username":"testuser07"}}
+{"_id":798,"id":798,"name":"Test Group","description":"Test group edited with JMeter3","isActive":true,"timestamp":"2017-09-28T08:16:04.208Z","members":[],"creator":{"userid":120008,"username":"testuser09"}}
+{"_id":799,"name":"Test Group","description":"Test group created with JMeter","isActive":true,"timestamp":"2017-09-28T08:16:04.682Z","members":[],"creator":{"userid":120004,"username":"testuser05"}}
