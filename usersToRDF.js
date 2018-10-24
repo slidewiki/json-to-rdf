@@ -43,6 +43,12 @@ swR:${id} a swV:User .
   `);
   for(let prop in obj){
     if(selected.indexOf(prop) !== -1){
+      if(prop === 'picture'){
+        console.log(`
+swR:${id} swV:picture <${obj[prop]}> .
+        `);
+        continue;
+      }
       console.log(`
 swR:${id} swV:${prop} """${obj[prop] ? obj[prop] : '-'}""" .
       `);

@@ -85,16 +85,16 @@ swR:${id}-${item.id} swV:hasTag swTagR:${tag.id} .
           item.contentItems.forEach((content)=>{
             if(content.kind === 'slide'){
               console.log(`
-swR:${id}-${item.id} swV:hasContentItem swR:${id}-${item.id}/${content.kind}/${content.ref.id}-${content.ref.revision} .
-swR:${id}-${item.id}/${content.kind}/${content.ref.id}-${content.ref.revision}  a swV:SlideRevision ;
+swR:${id}-${item.id} swV:hasContentItem <https://slidewiki.org/deck/${id}-${item.id}/${content.kind}/${content.ref.id}-${content.ref.revision}> .
+<https://slidewiki.org/deck/${id}-${item.id}/${content.kind}/${content.ref.id}-${content.ref.revision}>  a swV:SlideRevision ;
     swV:isRevisedFrom swSlideR:${content.ref.id} ;
     swV:isEqualTo swSlideR:${content.ref.id}-${content.ref.revision} ;
     swV:order """${content.order}""" .
               `);
             }else{
               console.log(`
-swR:${id}-${item.id} swV:hasContentItem swR:${id}-${item.id}/${content.kind}/${content.ref.id}-${content.ref.revision} .
-swR:${id}-${item.id}/${content.kind}/${content.ref.id}-${content.ref.revision}  a swV:DeckRevision ;
+swR:${id}-${item.id} swV:hasContentItem <https://slidewiki.org/deck/${id}-${item.id}/${content.kind}/${content.ref.id}-${content.ref.revision}> .
+<https://slidewiki.org/deck/${id}-${item.id}/${content.kind}/${content.ref.id}-${content.ref.revision}>  a swV:DeckRevision ;
     swV:isRevisedFrom swR:${content.ref.id} ;
     swV:isEqualTo swR:${content.ref.id}-${content.ref.revision} ;
     swV:order """${content.order}""" .
