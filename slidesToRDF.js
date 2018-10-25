@@ -45,16 +45,12 @@ swR:${id} a swV:Slide .
     if(selected.indexOf(prop) !== -1){
       //custom properties
       if(prop === 'user'){
-        console.log(`
-swR:${id} prv:createdBy swUserR:${obj[prop]} .
-        `);
+        console.log(`swR:${id} prv:createdBy swUserR:${obj[prop]} .`);
         continue;
       }
       if(prop === 'contributors'){
         obj[prop].forEach((item)=>{
-          console.log(`
-swR:${id} swV:hasContibutor swUserR:${item.user} .
-          `);
+          console.log(`swR:${id} swV:hasContibutor swUserR:${item.user} .`);
         });
         continue;
       }
@@ -67,15 +63,12 @@ swR:${id}-${item.id} a swV:SlideRevision ;
     swV:timestamp """${item.timestamp}""" ;
     swV:content """${encodeURIComponent(item.content)}""" ;
     swV:speakernotes """${item.speakernotes ? item.speakernotes : '-'}""" ;
-    prv:createdBy swUserR:${item.user} .
-          `);
+    prv:createdBy swUserR:${item.user} .`);
 
         });
         continue;
       }
-      console.log(`
-swR:${id} swV:${prop} """${obj[prop] ? obj[prop] : '-'}""" .
-      `);
+      console.log(`swR:${id} swV:${prop} """${obj[prop] ? obj[prop] : '-'}""" .`);
     }
   }
 }

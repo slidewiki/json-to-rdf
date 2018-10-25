@@ -35,29 +35,21 @@ const idField = '_id';
 function convertToRDF(obj) {
   //print turtle
   let id = obj[idField];
-  console.log(`
-swR:${id} a swV:UserGroup .
-  `);
+  console.log(`swR:${id} a swV:UserGroup .`);
   for(let prop in obj){
     if(selected.indexOf(prop) !== -1){
       if(prop === 'creator'){
-        console.log(`
-swR:${id} prv:createdBy swUserR:${obj[prop].userid} .
-        `);
+        console.log(`swR:${id} prv:createdBy swUserR:${obj[prop].userid} .`);
         continue;
       }
       if(prop === 'members'){
         obj[prop].forEach((item)=>{
-          console.log(`
-swR:${id} swV:hasMember swUserR:${item.userid} .
-          `);
+          console.log(`swR:${id} swV:hasMember swUserR:${item.userid} .`);
         });
         continue;
       }
 
-      console.log(`
-swR:${id} swV:${prop} """${obj[prop] ? obj[prop] : '-'}""" .
-      `);
+      console.log(`swR:${id} swV:${prop} """${obj[prop] ? obj[prop] : '-'}""" .`);
     }
   }
   console.log('################');

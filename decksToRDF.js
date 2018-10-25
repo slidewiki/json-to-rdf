@@ -41,23 +41,17 @@ function convertToRDF(obj) {
   //print turtle
   let id = obj[idField];
 console.log('#######'+id+'#########');
-  console.log(`
-swR:${id} a swV:Deck .
-  `);
+  console.log(`swR:${id} a swV:Deck .`);
   for(let prop in obj){
     if(selected.indexOf(prop) !== -1){
       //custom properties
       if(prop === 'user'){
-        console.log(`
-swR:${id} prv:createdBy swUserR:${obj[prop]} .
-        `);
+        console.log(`swR:${id} prv:createdBy swUserR:${obj[prop]} .`);
         continue;
       }
       if(prop === 'contributors'){
         obj[prop].forEach((item)=>{
-          console.log(`
-swR:${id} swV:hasContibutor swUserR:${item.user} .
-          `);
+          console.log(`swR:${id} swV:hasContibutor swUserR:${item.user} .`);
         });
         continue;
       }
@@ -73,13 +67,10 @@ swR:${id}-${item.id} a swV:DeckRevision ;
     swV:abstract """${item.abstract ? encodeURIComponent(item.abstract) : '-'}""" ;
     swV:theme """${item.theme}""" ;
     swV:allowMarkdown """${item.allowMarkdown}""" ;
-    prv:createdBy swUserR:${item.user} .
-          `);
+    prv:createdBy swUserR:${item.user} .`);
           if(item.tags.length){
             item.tags.forEach((tag)=>{
-              console.log(`
-swR:${id}-${item.id} swV:hasTag swTagR:${tag.id} .
-              `);
+              console.log(`swR:${id}-${item.id} swV:hasTag swTagR:${tag.id} .`);
             });
           }
           item.contentItems.forEach((content)=>{
@@ -89,16 +80,14 @@ swR:${id}-${item.id} swV:hasContentItem <https://slidewiki.org/deck/${id}-${item
 <https://slidewiki.org/deck/${id}-${item.id}/${content.kind}/${content.ref.id}-${content.ref.revision}>  a swV:SlideRevisionUsedInDeck ;
     swV:isRevisedFrom swSlideR:${content.ref.id} ;
     swV:isEqualTo swSlideR:${content.ref.id}-${content.ref.revision} ;
-    swV:order """${content.order}""" .
-              `);
+    swV:order """${content.order}""" .`);
             }else{
               console.log(`
 swR:${id}-${item.id} swV:hasContentItem <https://slidewiki.org/deck/${id}-${item.id}/${content.kind}/${content.ref.id}-${content.ref.revision}> .
 <https://slidewiki.org/deck/${id}-${item.id}/${content.kind}/${content.ref.id}-${content.ref.revision}>  a swV:DeckRevisionUsedInDeck ;
     swV:isRevisedFrom swR:${content.ref.id} ;
     swV:isEqualTo swR:${content.ref.id}-${content.ref.revision} ;
-    swV:order """${content.order}""" .
-              `);
+    swV:order """${content.order}""" .`);
             }
 
           });
@@ -106,9 +95,7 @@ swR:${id}-${item.id} swV:hasContentItem <https://slidewiki.org/deck/${id}-${item
         });
         continue;
       }
-      console.log(`
-swR:${id} swV:${prop} """${obj[prop] ? obj[prop] : '-'}""" .
-      `);
+      console.log(`swR:${id} swV:${prop} """${obj[prop] ? obj[prop] : '-'}""" .`);
     }
   }
 }
