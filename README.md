@@ -3,6 +3,9 @@ converts SlideWIki MongoDB schemas to RDF
 
 # how to use
 1. copy the JSON dump of MongoDB in the data folder (new line separated JSON objects)
+
+  to get the json dump you can use `mongoexport --host [host_ip] -d [dbname] -c [collection] > data/[collection].txt`
+
 2. run the following scripts to perform the conversion
 
   node [the name of convertor].js > data/[the name of rdf file].ttl
