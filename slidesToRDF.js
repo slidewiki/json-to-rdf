@@ -67,7 +67,7 @@ swR:${id}-${item.id} a swV:SlideRevision ;
     swV:timestampDay "${dt.getDate()}" ;
     swV:timestampDate "${dt.toLocaleDateString()}" ;
     swV:content """${encodeURIComponent(item.content)}""" ;
-    swV:speakernotes """${item.speakernotes ? item.speakernotes : '-'}""" ;
+    swV:speakernotes """${item.speakernotes ? encodeURIComponent(item.speakernotes) : '-'}""" ;
     prv:createdBy swUserR:${item.user} .`);
 
         });

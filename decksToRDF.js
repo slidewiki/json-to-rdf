@@ -116,6 +116,10 @@ swR:${id}-${item.id} swV:hasContentItem <https://slidewiki.org/deck/${id}-${item
           console.log(`swR:${id} swV:timestampDate "${dt.toLocaleDateString()}" .`);
         }
       }
+      if(prop === 'description'){
+        console.log(`swR:${id} swV:${prop} """${obj[prop] ? JSON.stringify(obj[prop]) : '-'}""" .`);
+        continue;
+      }
       console.log(`swR:${id} swV:${prop} """${obj[prop] ? obj[prop] : '-'}""" .`);
     }
   }
