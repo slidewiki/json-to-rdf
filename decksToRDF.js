@@ -78,8 +78,6 @@ swR:${id}-${item.id} a swV:DeckRevision ;
             item.tags.forEach((tag)=>{
               if(tag.id){
                 console.log(`swR:${id}-${item.id} swV:hasTag swTagR:${tag.id} .`);
-              } else if(tag._id) {
-                console.log(`swR:${id}-${item.id} swV:hasTag swTagR:${tag._id} .`);
               }
               if(tag.tagName) {
                 console.log(`swR:${id}-${item.id} swV:hasTag """${tag.tagName}""" .`);
