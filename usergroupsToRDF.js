@@ -1,4 +1,4 @@
-var ndjson = require('ndjson');
+var ndjson = require('ldjson-stream');
 var fs = require('fs');
 
 const prefixes = `
@@ -12,7 +12,7 @@ const prefixes = `
 console.log(prefixes);
 
 fs.createReadStream('data/usergroups.txt')
-  .pipe(ndjson.parse())
+  .pipe(ndjson.parse({strict: false}))
   .on('data', function(obj) {
     convertToRDF(obj);
   })
