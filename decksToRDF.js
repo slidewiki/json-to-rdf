@@ -33,6 +33,7 @@ const selected = [
   'license',
   'contributors', //esp
   'active',
+  'latestRevisionId',
   'revisions' //esp
 ];
 const idField = '_id';
@@ -57,11 +58,16 @@ console.log('#######'+id+'#########');
       }
       if(prop === 'revisions'){
         obj[prop].forEach((item)=>{
+          let dt = new Date(item.timestamp) ;
           console.log(`
 swR:${id} swV:hasRevision swR:${id}-${item.id}  .
 swR:${id}-${item.id} a swV:DeckRevision ;
     swV:title """${JSON.stringify(item.title)}""" ;
     swV:timestamp """${item.timestamp}""" ;
+    swV:timestampYear "${dt.getFullYear()}" ;
+    swV:timestampMonth "${dt.getMonth() + 1}" ;
+    swV:timestampDay "${dt.getDate()}" ;
+    swV:timestampDate "${dt.toLocaleDateString()}" ;
     swV:lastUpdate """${item.lastUpdate}""" ;
     swV:language """${item.language}""" ;
     swV:abstract """${item.abstract ? encodeURIComponent(item.abstract) : '-'}""" ;
@@ -70,7 +76,14 @@ swR:${id}-${item.id} a swV:DeckRevision ;
     prv:createdBy swUserR:${item.user} .`);
           if(item.tags.length){
             item.tags.forEach((tag)=>{
-              console.log(`swR:${id}-${item.id} swV:hasTag swTagR:${tag.id} .`);
+              if(tag.id){
+                console.log(`swR:${id}-${item.id} swV:hasTag swTagR:${tag.id} .`);
+              } else if(tag._id) {
+                console.log(`swR:${id}-${item.id} swV:hasTag swTagR:${tag._id} .`);
+              }
+              if(tag.tagName) {
+                console.log(`swR:${id}-${item.id} swV:hasTag """${tag.tagName}""" .`);
+              }
             });
           }
           item.contentItems.forEach((content)=>{
@@ -94,6 +107,16 @@ swR:${id}-${item.id} swV:hasContentItem <https://slidewiki.org/deck/${id}-${item
 
         });
         continue;
+      }
+      //additional triples
+      if(prop === 'timestamp'){
+        if(obj[prop]){
+          let dt = new Date(obj[prop]) ;
+          console.log(`swR:${id} swV:timestampYear "${dt.getFullYear()}" .`);
+          console.log(`swR:${id} swV:timestampMonth "${dt.getMonth() + 1}" .`);
+          console.log(`swR:${id} swV:timestampDay "${dt.getDate()}" .`);
+          console.log(`swR:${id} swV:timestampDate "${dt.toLocaleDateString()}" .`);
+        }
       }
       console.log(`swR:${id} swV:${prop} """${obj[prop] ? obj[prop] : '-'}""" .`);
     }

@@ -42,8 +42,18 @@ function convertToRDF(obj) {
   for(let prop in obj){
     if(selected.indexOf(prop) !== -1){
       if(prop === 'picture'){
-        console.log(`swR:${id} swV:picture """${obj[prop]}""" .`);
+        console.log(`swR:${id} swV:${prop} """${obj[prop]}""" .`);
         continue;
+      }
+      //additional triples
+      if(prop === 'registered'){
+        if(obj[prop]){
+          let dt = new Date(obj[prop]) ;
+          console.log(`swR:${id} swV:registeredYear "${dt.getFullYear()}" .`);
+          console.log(`swR:${id} swV:registeredMonth "${dt.getMonth() + 1}" .`);
+          console.log(`swR:${id} swV:registeredDay "${dt.getDate()}" .`);
+          console.log(`swR:${id} swV:registeredDate "${dt.toLocaleDateString()}" .`);
+        }
       }
       console.log(`swR:${id} swV:${prop} """${obj[prop] ? obj[prop] : '-'}""" .`);
     }

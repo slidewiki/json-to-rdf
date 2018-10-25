@@ -56,17 +56,32 @@ swR:${id} a swV:Slide .
       }
       if(prop === 'revisions'){
         obj[prop].forEach((item)=>{
+          let dt = new Date(item.timestamp) ;
           console.log(`
 swR:${id} swV:hasRevision swR:${id}-${item.id}  .
 swR:${id}-${item.id} a swV:SlideRevision ;
     swV:title """${JSON.stringify(item.title)}""" ;
     swV:timestamp """${item.timestamp}""" ;
+    swV:timestampYear "${dt.getFullYear()}" ;
+    swV:timestampMonth "${dt.getMonth() + 1}" ;
+    swV:timestampDay "${dt.getDate()}" ;
+    swV:timestampDate "${dt.toLocaleDateString()}" ;
     swV:content """${encodeURIComponent(item.content)}""" ;
     swV:speakernotes """${item.speakernotes ? item.speakernotes : '-'}""" ;
     prv:createdBy swUserR:${item.user} .`);
 
         });
         continue;
+      }
+      //additional triples
+      if(prop === 'timestamp'){
+        if(obj[prop]){
+          let dt = new Date(obj[prop]) ;
+          console.log(`swR:${id} swV:timestampYear "${dt.getFullYear()}" .`);
+          console.log(`swR:${id} swV:timestampMonth "${dt.getMonth() + 1}" .`);
+          console.log(`swR:${id} swV:timestampDay "${dt.getDate()}" .`);
+          console.log(`swR:${id} swV:timestampDate "${dt.toLocaleDateString()}" .`);
+        }
       }
       console.log(`swR:${id} swV:${prop} """${obj[prop] ? obj[prop] : '-'}""" .`);
     }
