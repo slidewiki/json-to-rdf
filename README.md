@@ -1,5 +1,7 @@
-# json-to-rdf
+# SlideWiki MongoDB JSON to RDF
 converts SlideWIki MongoDB schemas to RDF
+
+![graph](docs/rdfGraph.png)
 
 # how to use
 1. copy the JSON dump of MongoDB in the data folder (new line separated JSON objects)
@@ -24,4 +26,4 @@ converts SlideWIki MongoDB schemas to RDF
 
 3. import data to your triple store
 
-4. run post processing queries specified in postprocessingQueries.md
+4. run post processing queries specified in [postprocessingQueries.md](postprocessingQueries.md)
