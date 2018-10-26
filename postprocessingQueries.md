@@ -74,6 +74,17 @@ FILTER(?ro="slide")
 ```
 INSERT {
 GRAPH <https://slidewiki.org> {
+?s rdfs:label ?label  .
+}
+} WHERE {
+GRAPH <https://slidewiki.org> {
+?s <http://rdf.slidewiki.org/vocab/defaultName> ?label .
+}
+}
+```
+```
+INSERT {
+GRAPH <https://slidewiki.org> {
 ?s <http://rdf.slidewiki.org/vocab/relatedDeck> ?rt .
 }
 } WHERE {
@@ -82,6 +93,33 @@ GRAPH <https://slidewiki.org> {
 ?s <http://rdf.slidewiki.org/vocab/relatedTo> ?rt .
 FILTER(?ro="deck")
 
+}
+}
+```
+```
+INSERT {
+GRAPH <https://slidewiki.org> {
+?s <http://rdf.slidewiki.org/vocab/hasTag> ?t .
+
+}
+} WHERE {
+GRAPH <https://slidewiki.org> {
+?s <http://rdf.slidewiki.org/vocab/hasTag> ?tagName .
+?t <http://rdf.slidewiki.org/vocab/tagName> ?tagName .
+
+}
+}
+```
+```
+DELETE {
+GRAPH <https://slidewiki.org> {
+?s <http://rdf.slidewiki.org/vocab/hasTag> ?t .
+
+}
+} WHERE {
+GRAPH <https://slidewiki.org> {
+?s <http://rdf.slidewiki.org/vocab/hasTag> ?t .
+FILTER(!isURI(?t))
 }
 }
 ```
